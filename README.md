@@ -2,6 +2,10 @@
 
 A GitHub action to build WooCommerce using Composer and NPM.
 
+## Managing files in the build
+
+Use a `.distignore` file to exclude files from the build.
+
 ## Example
 
 ```
