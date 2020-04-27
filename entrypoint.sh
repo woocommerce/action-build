@@ -31,7 +31,12 @@ composer install --no-dev || exit "$?"
 echo "Generating build directory..."
 rm -rf "$BUILD_PATH"
 mkdir -p "$DEST_PATH"
-rsync -rc --exclude-from="$GITHUB_WORKSPACE/.distignore" "$GITHUB_WORKSPACE/" "$DEST_PATH/" --delete --delete-excluded
+
+if [ -r "${GITHUB_WORKSPACE}/.distignore" ]; then
+  rsync -rc --exclude-from="$GITHUB_WORKSPACE/.distignore" "$GITHUB_WORKSPACE/" "$DEST_PATH/" --delete --delete-excluded
+else
+  rsync -rc "$GITHUB_WORKSPACE/" "$DEST_PATH/" --delete
+fi
 
 if ! $GENERATE_ZIP; then
   echo "Generating zip file..."
