@@ -1,6 +1,6 @@
-# WooCommerce Build Action
+# WooCommerce - Action Build
 
-A GitHub action to build WooCommerce using Composer and NPM.
+A GitHub Action to build WooCommerce using Composer and NPM.
 
 ## Managing files in the build
 
