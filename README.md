@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build
         id: build
-        uses: woocommerce/woocommerce-build-action@master
+        uses: woocommerce/action-build@master
         with:
           generate-zip: true
       - name: Upload release asset
