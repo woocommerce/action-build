@@ -5,8 +5,8 @@ GENERATE_ZIP=false
 BUILD_PATH="./build"
 
 # Set options based on user input
-if [ -z $1 ]; then
-  GENERATE_ZIP=$1;
+if [ -n "$1" ]; then
+  GENERATE_ZIP="$1"
 fi
 
 # If not configured defaults to repository name
