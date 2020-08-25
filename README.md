@@ -23,8 +23,6 @@ jobs:
       - name: Build
         id: build
         uses: woocommerce/action-build@v2
-        with:
-          generate_zip: true
       - name: Upload release asset
         uses: actions/upload-release-asset@v1
         env:

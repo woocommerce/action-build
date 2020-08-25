@@ -32,13 +32,11 @@ else
   rsync -rc "$GITHUB_WORKSPACE/" "$DEST_PATH/" --delete
 fi
 
-if ! $INPUT_GENERATE_ZIP; then
-  echo "Generating zip file..."
-  cd "$BUILD_PATH" || exit
-  zip -r "${PLUGIN_SLUG}.zip" "$PLUGIN_SLUG/"
-  # Set GitHub "zip_path" output
-  echo "::set-output name=zip_path::$BUILD_PATH/${PLUGIN_SLUG}.zip"
-  echo "Zip file generated!"
-fi
+echo "Generating zip file..."
+cd "$BUILD_PATH" || exit
+zip -r "${PLUGIN_SLUG}.zip" "$PLUGIN_SLUG/"
+# Set GitHub "zip_path" output
+echo "::set-output name=zip_path::$BUILD_PATH/${PLUGIN_SLUG}.zip"
+echo "Zip file generated!"
 
 echo "Build done!"
