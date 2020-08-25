@@ -5,7 +5,7 @@ GENERATE_ZIP=false
 BUILD_PATH="./build"
 
 # Set options based on user input
-if [ -n "$1" ]; then
+if [ -z "$1" ]; then
   GENERATE_ZIP="$1"
 fi
 
