@@ -2,7 +2,7 @@ name: 'WooCommerce Build Action'
 author: WooCommerce
 description: 'Build WooCommerce using Composer and NPM'
 inputs:
-  generate-zip:
+  generate_zip:
     description: 'Generate package zip file?'
     default: false
 outputs:

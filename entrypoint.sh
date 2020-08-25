@@ -1,13 +1,7 @@
 #!/bin/sh
 
 # Set variables
-GENERATE_ZIP=false
 BUILD_PATH="./build"
-
-# Set options based on user input
-if [ -z "$1" ]; then
-  GENERATE_ZIP="$1"
-fi
 
 # If not configured defaults to repository name
 if [ -z "$PLUGIN_SLUG" ]; then
@@ -38,7 +32,7 @@ else
   rsync -rc "$GITHUB_WORKSPACE/" "$DEST_PATH/" --delete
 fi
 
-if ! $GENERATE_ZIP; then
+if ! $INPUT_GENERATE_ZIP; then
   echo "Generating zip file..."
   cd "$BUILD_PATH" || exit
   zip -r "${PLUGIN_SLUG}.zip" "$PLUGIN_SLUG/"
