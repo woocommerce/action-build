@@ -13,5 +13,5 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.generate-zip }}
+  env:
+    INPUT_GENERATE_ZIP: ${{ inputs.generate_zip }}
