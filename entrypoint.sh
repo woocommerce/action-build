@@ -3,6 +3,7 @@
 # Set variables
 GENERATE_ZIP=false
 BUILD_PATH="./build"
+WORKING_DIRECTORY="$GITHUB_WORKSPACE/plugins/woocommerce"
 
 # Set options based on user input
 if [ -z "$1" ]; then
@@ -18,8 +19,7 @@ fi
 DEST_PATH="$BUILD_PATH/$PLUGIN_SLUG"
 echo "::set-output name=path::$DEST_PATH"
 
-cd "$GITHUB_WORKSPACE" || exit
-cd plugins/woocommerce || exit
+cd "$WORKING_DIRECTORY" || exit
 
 echo "Installing PHP and JS dependencies..."
 npm install
@@ -33,10 +33,10 @@ echo "Generating build directory..."
 rm -rf "$BUILD_PATH"
 mkdir -p "$DEST_PATH"
 
-if [ -r "${GITHUB_WORKSPACE}/.distignore" ]; then
-  rsync -rc --exclude-from="$GITHUB_WORKSPACE/.distignore" "$GITHUB_WORKSPACE/" "$DEST_PATH/" --delete --delete-excluded
+if [ -r "${WORKING_DIRECTORY}/.distignore" ]; then
+  rsync -rc --exclude-from="$WORKING_DIRECTORY/.distignore" "$WORKING_DIRECTORY/" "$DEST_PATH/" --delete --delete-excluded
 else
-  rsync -rc "$GITHUB_WORKSPACE/" "$DEST_PATH/" --delete
+  rsync -rc "$WORKING_DIRECTORY/" "$DEST_PATH/" --delete
 fi
 
 if ! $GENERATE_ZIP; then
