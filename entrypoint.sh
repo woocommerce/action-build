@@ -19,6 +19,7 @@ DEST_PATH="$BUILD_PATH/$PLUGIN_SLUG"
 echo "::set-output name=path::$DEST_PATH"
 
 cd "$GITHUB_WORKSPACE" || exit
+cd plugins/woocommerce || exit
 
 echo "Installing PHP and JS dependencies..."
 npm install
