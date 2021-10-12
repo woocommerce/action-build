@@ -23,6 +23,10 @@ cd "$WORKING_DIRECTORY" || exit
 
 echo "Installing PHP and JS dependencies..."
 npm install
+
+// Try this
+cd "$WORKING_DIRECTORY" || exit
+
 composer install || exit "$?"
 echo "Running JS Build..."
 npm run build:core || exit "$?"
