@@ -19,15 +19,16 @@ fi
 DEST_PATH="$BUILD_PATH/$PLUGIN_SLUG"
 echo "::set-output name=path::$DEST_PATH"
 
-cd "$WORKING_DIRECTORY" || exit
-
 echo "Installing PHP and JS dependencies..."
+
+// Install repo dependencies
 npm install
 
-// Try this
+// Install WooCommerce dependencies
 cd "$WORKING_DIRECTORY" || exit
-
+npm install
 composer install || exit "$?"
+
 echo "Running JS Build..."
 npm run build:core || exit "$?"
 echo "Cleaning up PHP dependencies..."
