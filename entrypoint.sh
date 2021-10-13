@@ -4,6 +4,7 @@
 GENERATE_ZIP=false
 BUILD_PATH="./build"
 WORKING_DIRECTORY="$GITHUB_WORKSPACE/plugins/woocommerce"
+ZIP_DIRECTORY="plugins/woocommerce/build"
 
 # Set options based on user input
 if [ -z "$1" ]; then
@@ -49,7 +50,7 @@ if ! $GENERATE_ZIP; then
   cd "$BUILD_PATH" || exit
   zip -r "${PLUGIN_SLUG}.zip" "$PLUGIN_SLUG/"
   # Set GitHub "zip_path" output
-  echo "::set-output name=zip_path::plugins/woocommerce/build/${PLUGIN_SLUG}.zip"
+  echo "::set-output name=zip_path::${ZIP_DIRECTORY}/${PLUGIN_SLUG}.zip"
   echo "Zip file generated!"
 fi
 
