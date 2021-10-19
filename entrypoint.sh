@@ -23,15 +23,14 @@ echo "::set-output name=path::$DEST_PATH"
 echo "Installing PHP and JS dependencies..."
 
 // Install repo dependencies
-npm install
+pnpm install
 
 // Install WooCommerce dependencies
 cd "$WORKING_DIRECTORY" || exit
-npm install
 composer install || exit "$?"
 
 echo "Running JS Build..."
-npm run build:core || exit "$?"
+pnpm run build:core || exit "$?"
 echo "Cleaning up PHP dependencies..."
 composer install --no-dev || exit "$?"
 
