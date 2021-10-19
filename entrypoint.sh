@@ -4,6 +4,7 @@
 GENERATE_ZIP=false
 BUILD_PATH="./build"
 WORKING_DIRECTORY="$GITHUB_WORKSPACE/plugins/woocommerce"
+ZIP_DIRECTORY="plugins/woocommerce/build"
 
 # Set options based on user input
 if [ -z "$1" ]; then
@@ -19,11 +20,16 @@ fi
 DEST_PATH="$BUILD_PATH/$PLUGIN_SLUG"
 echo "::set-output name=path::$DEST_PATH"
 
-cd "$WORKING_DIRECTORY" || exit
-
 echo "Installing PHP and JS dependencies..."
+
+// Install repo dependencies
+npm install
+
+// Install WooCommerce dependencies
+cd "$WORKING_DIRECTORY" || exit
 npm install
 composer install || exit "$?"
+
 echo "Running JS Build..."
 npm run build:core || exit "$?"
 echo "Cleaning up PHP dependencies..."
@@ -44,7 +50,7 @@ if ! $GENERATE_ZIP; then
   cd "$BUILD_PATH" || exit
   zip -r "${PLUGIN_SLUG}.zip" "$PLUGIN_SLUG/"
   # Set GitHub "zip_path" output
-  echo "::set-output name=zip_path::$BUILD_PATH/${PLUGIN_SLUG}.zip"
+  echo "::set-output name=zip_path::${ZIP_DIRECTORY}/${PLUGIN_SLUG}.zip"
   echo "Zip file generated!"
 fi
 
