@@ -42,7 +42,7 @@ rm -rf "$BUILD_PATH"
 mkdir -p "$DEST_PATH"
 
 if [ -r "${WORKING_DIRECTORY}/.distignore" ]; then
-  rsync -rc --exclude-from="$WORKING_DIRECTORY/.distignore" "$WORKING_DIRECTORY/" "$DEST_PATH/" --delete --delete-excluded
+  rsync -rc --exclude-from="$WORKING_DIRECTORY/.distignore" --include="$WORKING_DIRECTORY/node_modules/.bin/wc-e2e" "$WORKING_DIRECTORY/" "$DEST_PATH/" --delete --delete-excluded
 else
   rsync -rc "$WORKING_DIRECTORY/" "$DEST_PATH/" --delete
 fi
