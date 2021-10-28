@@ -22,16 +22,18 @@ echo "::set-output name=path::$DEST_PATH"
 
 echo "Installing PHP and JS dependencies..."
 
+// Make sure PNPM is available
+npm install -g pnpm
+
 // Install repo dependencies
-npm install
+pnpm install
 
 // Install WooCommerce dependencies
 cd "$WORKING_DIRECTORY" || exit
-npm install
 composer install || exit "$?"
 
 echo "Running JS Build..."
-npm run build:core || exit "$?"
+pnpm run build:core || exit "$?"
 echo "Cleaning up PHP dependencies..."
 composer install --no-dev || exit "$?"
 
@@ -40,7 +42,7 @@ rm -rf "$BUILD_PATH"
 mkdir -p "$DEST_PATH"
 
 if [ -r "${WORKING_DIRECTORY}/.distignore" ]; then
-  rsync -rc --exclude-from="$WORKING_DIRECTORY/.distignore" "$WORKING_DIRECTORY/" "$DEST_PATH/" --delete --delete-excluded
+  mkdir -p "$DEST_PATH/node_modules/.bin" && cp "${WORKING_DIRECTORY}/node_modules/.bin/wc-e2e" "$DEST_PATH/node_modules/.bin" && rsync -rc --exclude-from="$WORKING_DIRECTORY/.distignore" "$WORKING_DIRECTORY/" "$DEST_PATH/"
 else
   rsync -rc "$WORKING_DIRECTORY/" "$DEST_PATH/" --delete
 fi
