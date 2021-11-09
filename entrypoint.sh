@@ -47,6 +47,7 @@ if [ -r "${WORKING_DIRECTORY}/.distignore" ]; then
   cp "${WORKING_DIRECTORY}/package.json" "$DEST_PATH" &&
   cp -r "${WORKING_DIRECTORY}/tests" "$DEST_PATH" &&
   cp -r "${WORKING_DIRECTORY}/sample-data" "$DEST_PATH" &&
+  cp -r "${WORKING_DIRECTORY}/composer.json" "$DEST_PATH" &&
   rsync -rc --exclude-from="$WORKING_DIRECTORY/.distignore" "$WORKING_DIRECTORY/" "$DEST_PATH/"
 else
   rsync -rc "$WORKING_DIRECTORY/" "$DEST_PATH/" --delete
