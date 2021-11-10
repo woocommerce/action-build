@@ -42,12 +42,24 @@ rm -rf "$BUILD_PATH"
 mkdir -p "$DEST_PATH"
 
 if [ -r "${WORKING_DIRECTORY}/.distignore" ]; then
-  mkdir -p "$DEST_PATH/node_modules/.bin" && 
-  cp "${WORKING_DIRECTORY}/node_modules/.bin/wc-e2e" "$DEST_PATH/node_modules/.bin" && 
-  cp "${WORKING_DIRECTORY}/package.json" "$DEST_PATH" &&
-  cp -r "${WORKING_DIRECTORY}/tests" "$DEST_PATH" &&
-  cp -r "${WORKING_DIRECTORY}/sample-data" "$DEST_PATH" &&
-  cp -r "${WORKING_DIRECTORY}/composer.json" "$DEST_PATH" &&
+  if [[ -z "$BUILD_ENV" ]]; then
+    echo "No build environment specified, defaulting to a production build zip."
+  fi
+
+  if [[ "$BUILD_ENV" = "e2e" ]]; then
+    echo "Creating a zip for e2e tests."
+    mkdir -p "$DEST_PATH/node_modules/.bin" && 
+    cp "${WORKING_DIRECTORY}/node_modules/.bin/wc-e2e" "$DEST_PATH/node_modules/.bin" && 
+    cp "${WORKING_DIRECTORY}/package.json" "$DEST_PATH" &&
+    cp -r "${WORKING_DIRECTORY}/tests" "$DEST_PATH" &&
+    cp -r "${WORKING_DIRECTORY}/sample-data" "$DEST_PATH" &&
+  fi
+
+  if [[ "$BUILD_ENV" = "mirrors" ]]; then
+    echo "Creating a zip for production mirror repository."
+    cp "${WORKING_DIRECTORY}/composer.json" "$DEST_PATH" &&
+  fi
+
   rsync -rc --exclude-from="$WORKING_DIRECTORY/.distignore" "$WORKING_DIRECTORY/" "$DEST_PATH/"
 else
   rsync -rc "$WORKING_DIRECTORY/" "$DEST_PATH/" --delete
