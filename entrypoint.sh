@@ -25,6 +25,9 @@ echo "Installing PHP and JS dependencies..."
 // Make sure PNPM is available
 npm install -g pnpm
 
+// Make sure Grunt is available
+npm install -g grunt-cli
+
 // Install repo dependencies
 pnpm install
 
