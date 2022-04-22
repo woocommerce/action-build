@@ -52,7 +52,6 @@ if [ -r "${WORKING_DIRECTORY}/.distignore" ]; then
   if [ "$BUILD_ENV" = "e2e" ]; then
     echo "Creating a zip for e2e tests."
     mkdir -p "$DEST_PATH/node_modules/.bin" &&
-    chmod 777 "$DEST_PATH/node_modules/.bin" &&
     cp "${WORKING_DIRECTORY}/node_modules/.bin/wc-e2e" "$DEST_PATH/node_modules/.bin" &&
     cp "${WORKING_DIRECTORY}/package.json" "$DEST_PATH" &&
     cp "${WORKING_DIRECTORY}/project.json" "$DEST_PATH" &&
