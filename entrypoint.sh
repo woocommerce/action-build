@@ -28,10 +28,6 @@ npm install -g pnpm
 // Make sure Grunt is available
 npm install -g grunt-cli
 
-mkdir ~/.npm-global
-npm config set prefix "~/.npm-global"
-NPM_CONFIG_PREFIX=~/.npm-global
-
 // Install repo dependencies
 pnpm install
 
@@ -40,7 +36,7 @@ cd "$WORKING_DIRECTORY" || exit
 composer install || exit "$?"
 
 echo "Running JS Build..."
-pnpm run build || exit "$?"
+pnpm nx build woocommerce || exit "$?"
 echo "Cleaning up PHP dependencies..."
 composer install --no-dev || exit "$?"
 
