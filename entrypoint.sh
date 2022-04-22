@@ -28,6 +28,10 @@ npm install -g pnpm
 // Make sure Grunt is available
 npm install -g grunt-cli
 
+mkdir ~/.npm-global
+npm config set prefix "~/.npm-global"
+NPM_CONFIG_PREFIX=~/.npm-global
+
 // Install repo dependencies
 pnpm install
 
@@ -51,8 +55,8 @@ if [ -r "${WORKING_DIRECTORY}/.distignore" ]; then
 
   if [ "$BUILD_ENV" = "e2e" ]; then
     echo "Creating a zip for e2e tests."
-    mkdir -p "$DEST_PATH/node_modules/.bin" && 
-    cp "${WORKING_DIRECTORY}/node_modules/.bin/wc-e2e" "$DEST_PATH/node_modules/.bin" && 
+    mkdir -p "$DEST_PATH/node_modules/.bin" &&
+    cp "${WORKING_DIRECTORY}/node_modules/.bin/wc-e2e" "$DEST_PATH/node_modules/.bin" &&
     cp "${WORKING_DIRECTORY}/package.json" "$DEST_PATH" &&
     cp "${WORKING_DIRECTORY}/project.json" "$DEST_PATH" &&
     cp -r "${WORKING_DIRECTORY}/tests" "$DEST_PATH" &&
