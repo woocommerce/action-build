@@ -36,7 +36,7 @@ cd "$WORKING_DIRECTORY" || exit
 composer install || exit "$?"
 
 echo "Running JS Build..."
-pnpm nx build woocommerce || exit "$?"
+pnpm nx build woocommerce
 echo "Cleaning up PHP dependencies..."
 composer install --no-dev || exit "$?"
 
