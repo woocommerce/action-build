@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:20.04.4
 
 ENV TZ=GMT+0
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
