@@ -29,9 +29,11 @@ npm install -g pnpm
 npm install -g grunt-cli
 
 // Install repo dependencies
-sudo pnpm install
+echo "PNPM install..."
+pnpm install
 
 // Install WooCommerce dependencies
+echo "Composer install..."
 cd "$WORKING_DIRECTORY" || exit
 composer install || exit "$?"
 
