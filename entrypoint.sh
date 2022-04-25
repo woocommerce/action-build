@@ -5,6 +5,8 @@ GENERATE_ZIP=false
 BUILD_PATH="./build"
 WORKING_DIRECTORY="$GITHUB_WORKSPACE/plugins/woocommerce"
 ZIP_DIRECTORY="plugins/woocommerce/build"
+echo "build path: $BUILD_PATH"
+echo "working dir: $WORKING_DIRECTORY"
 
 # Set options based on user input
 if [ -z "$1" ]; then
@@ -15,7 +17,7 @@ fi
 if [ -z "$PLUGIN_SLUG" ]; then
   PLUGIN_SLUG=${GITHUB_REPOSITORY#*/}
 fi
-
+echo "plugin slug: $PLUGIN_SLUG"
 # Set GitHub "path" output
 DEST_PATH="$BUILD_PATH/$PLUGIN_SLUG"
 echo "::set-output name=path::$DEST_PATH"
