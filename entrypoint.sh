@@ -22,7 +22,7 @@ echo "::set-output name=path::$DEST_PATH"
 
 echo "Installing PHP and JS dependencies..."
 
-// Make sure PNPM is available
+// Make sure PNPM is available.
 npm install -g pnpm
 
 // Make sure Grunt is available
@@ -51,8 +51,8 @@ if [ -r "${WORKING_DIRECTORY}/.distignore" ]; then
 
   if [ "$BUILD_ENV" = "e2e" ]; then
     echo "Creating a zip for e2e tests."
-    mkdir -p "$DEST_PATH/node_modules/.bin" && 
-    cp "${WORKING_DIRECTORY}/node_modules/.bin/wc-e2e" "$DEST_PATH/node_modules/.bin" && 
+    mkdir -p "$DEST_PATH/node_modules/.bin" &&
+    cp "${WORKING_DIRECTORY}/node_modules/.bin/wc-e2e" "$DEST_PATH/node_modules/.bin" &&
     cp "${WORKING_DIRECTORY}/package.json" "$DEST_PATH" &&
     cp "${WORKING_DIRECTORY}/project.json" "$DEST_PATH" &&
     cp -r "${WORKING_DIRECTORY}/tests" "$DEST_PATH" &&
