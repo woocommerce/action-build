@@ -22,6 +22,8 @@ echo "::set-output name=path::$DEST_PATH"
 
 echo "Installing PHP and JS dependencies..."
 
+who
+
 // Make sure PNPM is available
 npm install -g pnpm
 
