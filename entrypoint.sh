@@ -35,8 +35,12 @@ pnpm install
 cd "$WORKING_DIRECTORY" || exit
 composer install || exit "$?"
 
+echo "Check current user"
+whoami
+
 echo "Running JS Build..."
 pnpm run build || exit "$?"
+
 echo "Cleaning up PHP dependencies..."
 composer install --no-dev || exit "$?"
 
