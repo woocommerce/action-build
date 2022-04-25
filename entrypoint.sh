@@ -22,13 +22,15 @@ echo "::set-output name=path::$DEST_PATH"
 
 echo "Installing PHP and JS dependencies..."
 
-who
-
 // Make sure PNPM is available
 npm install -g pnpm
 
 // Make sure Grunt is available
 npm install -g grunt-cli
+
+echo "Set permissions..."
+find /github/workspace/plugins/woocommerce/legacy/node_modules -type d -exec chmod 755 {} +
+find /github/workspace/plugins/woocommerce/legacy/node_modules -type f -exec chmod 644 {} +
 
 // Install repo dependencies
 pnpm install
