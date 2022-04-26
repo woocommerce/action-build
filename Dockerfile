@@ -10,4 +10,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 COPY entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+RUN ["chmod", "+x", "/entrypoint.sh"]
+
+ENTRYPOINT ["sh", "/entrypoint.sh"]

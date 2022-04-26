@@ -36,7 +36,7 @@ cd "$WORKING_DIRECTORY" || exit
 composer install || exit "$?"
 
 echo "Running JS Build..."
-sudo pnpm run build || exit "$?"
+pnpm run build || exit "$?"
 
 echo "Cleaning up PHP dependencies..."
 composer install --no-dev || exit "$?"
@@ -57,10 +57,7 @@ if [ -r "${WORKING_DIRECTORY}/.distignore" ]; then
     cp "${WORKING_DIRECTORY}/package.json" "$DEST_PATH" &&
     cp "${WORKING_DIRECTORY}/project.json" "$DEST_PATH" &&
     cp -r "${WORKING_DIRECTORY}/tests" "$DEST_PATH" &&
-    cp -r "${WORKING_DIRECTORY}/sample-data" "$DEST_PATH" &&
-    echo "Testing chmod" &&
-    chmod -R 755 "$DEST_PATH/node_modules/.bin" &&
-    chmod -R 755 /github/workspace/plugins/woocommerce/legacy/node_modules
+    cp -r "${WORKING_DIRECTORY}/sample-data" "$DEST_PATH"
   fi
 
   if [ "$BUILD_ENV" = "mirrors" ]; then
