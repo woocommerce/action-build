@@ -51,14 +51,16 @@ if [ -r "${WORKING_DIRECTORY}/.distignore" ]; then
   fi
 
   if [ "$BUILD_ENV" = "e2e" ]; then
-    echo "Creating a zip for e2e tests."
+    echo "Creating a zip for e2e tests." &&
     mkdir -p "$DEST_PATH/node_modules/.bin" &&
     cp "${WORKING_DIRECTORY}/node_modules/.bin/wc-e2e" "$DEST_PATH/node_modules/.bin" &&
     cp "${WORKING_DIRECTORY}/package.json" "$DEST_PATH" &&
     cp "${WORKING_DIRECTORY}/project.json" "$DEST_PATH" &&
     cp -r "${WORKING_DIRECTORY}/tests" "$DEST_PATH" &&
-    cp -r "${WORKING_DIRECTORY}/sample-data" "$DEST_PATH"
-    chmod -R 755 "$DEST_PATH/node_modules/.bin"
+    cp -r "${WORKING_DIRECTORY}/sample-data" "$DEST_PATH" &&
+    echo "Testing chmod" &&
+    chmod -R 755 "$DEST_PATH/node_modules/.bin" &&
+    chmod -R 755 /github/workspace/plugins/woocommerce/legacy/node_modules
   fi
 
   if [ "$BUILD_ENV" = "mirrors" ]; then
