@@ -58,6 +58,7 @@ if [ -r "${WORKING_DIRECTORY}/.distignore" ]; then
     cp "${WORKING_DIRECTORY}/project.json" "$DEST_PATH" &&
     cp -r "${WORKING_DIRECTORY}/tests" "$DEST_PATH" &&
     cp -r "${WORKING_DIRECTORY}/sample-data" "$DEST_PATH"
+    chmod -R 755 "$DEST_PATH/node_modules/.bin"
   fi
 
   if [ "$BUILD_ENV" = "mirrors" ]; then
